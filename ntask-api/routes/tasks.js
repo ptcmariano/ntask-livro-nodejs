@@ -9,8 +9,4 @@ module.exports = (app) => {
         res.json({ err });
       });
   });
-  const allRoutes = app.routes;
-  app.get("/all", (req, res) => {
-    res.json({ allRoutes });
-  });
 };
