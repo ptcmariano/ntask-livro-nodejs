@@ -18,14 +18,28 @@ module.exports = (app) => {
     Tasks.create(req.body)
       .then(result => res.json(result))
       .catch((error) => {
-        console.log('req',req.body)
         res.status(412).json({ catch:error, request:req.body });
       });
   });
   app.route("/tasks/:id").all((req, res) => {
     // middleware pre comands to routes /tasks/:id
+    if (req.body) {
+      delete req.body.id;
+    }
+    next();
   }).get((req, res) => {
     // get unique task
+    Tasks.findOne({where: req.params})
+    .then((result) => {
+      if (result) {
+        res.json(result);
+      } else {
+        res.sendStatus(404);
+      }
+    })
+    .catch((error) => {
+      res.status(412).json({ catch:error, request:req.body });
+    });
   }).post((req, res) => {
     // create new
   }).put((req, res) => {
