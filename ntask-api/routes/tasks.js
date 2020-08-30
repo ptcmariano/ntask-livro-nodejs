@@ -28,7 +28,6 @@ module.exports = (app) => {
     }
     next();
   }).get((req, res) => {
-    // get unique task
     Tasks.findOne({where: req.params})
     .then((result) => {
       if (result) {
@@ -43,13 +42,16 @@ module.exports = (app) => {
   }).post((req, res) => {
     // create new
   }).put((req, res) => {
-    // update
     Tasks.update(req.body, {where: req.params})
     .then(() => res.sendStatus(204))
     .catch((error) => {
       res.status(412).json({ catch:error, request:req.body });
     });
   }).delete((req, res) => {
-    // /\
+    Tasks.destroy({where: req.params})
+    .then(() => res.sendStatus(204))
+    .catch((error) => {
+      res.status(412).json({ catch:error, request:req.body });
+    });
   });
 };
