@@ -1,12 +1,7 @@
 module.exports = (app) => {
   const Tasks = app.db.models.Tasks;
-  app.route("/tasks").all((req, res, next) => {
-    // middleware pre comands to routes /tasks
-    if (req.body) {
-      delete req.body.id;
-    }
-    next();
-  }).get((req, res) => {
+  app.route("/tasks")
+  .get((req, res) => {
     Tasks.findAll({ limit: 10 })
       .then((tasks) => {
         res.json({ tasks });
@@ -21,13 +16,9 @@ module.exports = (app) => {
         res.status(412).json({ catch:error, request:req.body });
       });
   });
-  app.route("/tasks/:id").all((req, res) => {
-    // middleware pre comands to routes /tasks/:id
-    if (req.body) {
-      delete req.body.id;
-    }
-    next();
-  }).get((req, res) => {
+
+  app.route("/tasks/:id")
+  .get((req, res) => {
     Tasks.findOne({where: req.params})
     .then((result) => {
       if (result) {
