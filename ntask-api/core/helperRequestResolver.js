@@ -1,11 +1,15 @@
 class RequestResolver {
   run(promisseDb, response) {
     promisseDb
-    .then((tasks) => {
-      response.json({ tasks });
+    .then((result) => {
+      if (result) {
+        response.json(result);
+      } else {
+        response.sendStatus(404);
+      }
     })
     .catch((error) => {
-      response.status(412).json({ error });
+      response.status(412).json({ catch:error, request:req.body });
     });
   }
 }
