@@ -9,7 +9,7 @@ module.exports = app => {
     });
     helperRequestResolver(promisseDb,res);
   });
-  app.post("/users/:id", (req, res) => {
+  app.post("/users", (req, res) => {
     const promisseDb = Users.create(req.body);
     helperRequestResolver(promisseDb,res);
   });
