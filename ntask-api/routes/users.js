@@ -9,4 +9,12 @@ module.exports = app => {
     });
     helperRequestResolver(promisseDb,res);
   });
+  app.post("/users/:id", (req, res) => {
+    const promisseDb = Users.create(req.body);
+    helperRequestResolver(promisseDb,res);
+  });
+  app.delete("/users/:id", (req, res) => {
+    const promisseDb = Users.destroy({where: req.params.id});
+    helperRequestResolver(promisseDb,res);
+  });
 }
