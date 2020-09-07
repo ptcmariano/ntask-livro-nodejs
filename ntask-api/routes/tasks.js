@@ -3,6 +3,7 @@ import helperRequestResolver from '../core/helperRequestResolver'
 module.exports = (app) => {
   const Tasks = app.db.models.Tasks;
   app.route("/tasks")
+  .all(app.auth.authenticate())
   .get((req, res) => {
     const promisseDb = Tasks.findAll({ limit: 10 });
     helperRequestResolver(promisseDb,res);
@@ -12,6 +13,7 @@ module.exports = (app) => {
   });
 
   app.route("/tasks/:id")
+  .all(app.auth.authenticate())
   .get((req, res) => {
     const promisseDb = Tasks.findOne({where: req.params})
     helperRequestResolver(promisseDb,res);

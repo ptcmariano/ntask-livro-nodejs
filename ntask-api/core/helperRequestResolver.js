@@ -9,7 +9,7 @@ class RequestResolver {
       }
     })
     .catch((error) => {
-      response.status(412).json({ catch:error, request:req.body });
+      response.status(412).json({ catch:error });
     });
   }
 }
