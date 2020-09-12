@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node index.js",
-    "test": "exit 128 # not impemented yet"
+    "test": "SET NODE_ENV=test && mocha test/**/*.js"
   },
   "keywords": [
     "task"
@@ -26,6 +26,10 @@
     "sequelize": "^3.19.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "babel-register": "^6.5.2",
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
+    "nodemon": "^2.0.4",
+    "supertest": "^1.2.0"
   }
 }

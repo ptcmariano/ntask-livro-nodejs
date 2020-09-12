@@ -1,11 +1,7 @@
-// *** use this only in development
-module.exports = {
-  database: "ntask",
-  username: "root",
-  password: "",
-  params: {
-    dialect: "mysql",
-  },
-  jwtSecret: "NT4sk#AP1",
-  jwtSession: {session:false}
-};
+module.exports = app => {
+  const env = process.env.NODE_ENV.trim();
+  if (env) {
+    return require(`./config.${env}.js`);
+  }
+  return require('./config.development.js');
+}
