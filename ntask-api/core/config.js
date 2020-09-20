@@ -1,7 +1,7 @@
 module.exports = app => {
-  const env = process.env.NODE_ENV.trim();
-  if (env) {
-    return require(`./config.${env}.js`);
+  const env = process.env;
+  if (env.NODE_ENV) {
+    return require(`./config.${env.NODE_ENV.trim()}.js`);
   }
   return require('./config.development.js');
 }
