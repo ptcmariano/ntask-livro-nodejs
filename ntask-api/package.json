@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node index.js",
+    "apidoc": "apidoc -i routes/ -o public/apidoc",
     "test": "SET NODE_ENV=test && mocha test/**/*.js"
+  },
+  "apidoc": {
+    "name": "Docs API TASK",
+    "template": {"forceLanguage": "pt_br"}
   },
   "keywords": [
     "task"
@@ -26,6 +31,7 @@
     "sequelize": "^3.19.2"
   },
   "devDependencies": {
+    "apidoc": "^0.15.1",
     "babel-register": "^6.5.2",
     "chai": "^3.5.0",
     "mocha": "^2.4.5",
