@@ -2,14 +2,19 @@ import bodyParser from 'body-parser';
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
+import logger from './logger'
 
 module.exports = (app) => {
   app.set("port", 3000);
   app.set("json spaces", 2);
   app.set("x-powered-by", false);
-  app.use(morgan("common", {stream:{write: (message) => {
-    logger.info(message);
-  }}}));
+  app.use(morgan("common", {
+    stream:{
+      write: (message) => {
+        logger.info(message);
+      }
+    }
+  }));
   app.use(cors({
     origin: ["http://localhost:3001"],
     methods: ["GET", "POST", "PUT", "DELETE"],
