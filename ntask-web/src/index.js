@@ -1,3 +1,6 @@
+import App from './app';
+
 window.onload = () => {
-    alert('bem vindo')
+    const main = document.querySelector('main');
+    new App(main).init();
 }

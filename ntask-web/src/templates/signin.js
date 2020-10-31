@@ -18,7 +18,7 @@ exports.render = () => {
         </div>
     </form>
     <div class="padding">
-        <button class="button button-block" data-singup>
+        <button class="button button-block" data-signup>
             <i class="ion-person-add"></i> Cadastrar
         </button>
     </div>
